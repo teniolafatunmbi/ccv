@@ -46,7 +46,7 @@ def validate_credit_card(payload: ValidationPayload):
         return ExpiredCreditCard()
     
     # elif expiry month is greater than current month, raise ExpiredCreditCard exception
-    if (payload.expiry_year < current_year) and (payload.expiry_month < current_month):
+    if (payload.expiry_year <= current_year) and (payload.expiry_month < current_month):
         return ExpiredCreditCard()
 
     # if cvv is american express, pan card number must start with 34 or 37
