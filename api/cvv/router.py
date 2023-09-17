@@ -20,6 +20,4 @@ def validate_credit_card(payload: ValidationPayload):
     """
     response = service.validate_credit_card(payload)
     
-    # validate with luhn's algorithm
-
     return response
