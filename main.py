@@ -1,4 +1,4 @@
-import uvicorn, logging, traceback
+import uvicorn, traceback
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
@@ -7,9 +7,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.cvv.router import router as cvv
 
 from decouple import config
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.ERROR)
 
 def get_application():
     _app = FastAPI(title="Credit Card Validator")
@@ -40,12 +37,7 @@ async def root():
 async def generic_exception_handler(request, exc):
     if isinstance(exc, HTTPException):
         raise exc
-    logger.error(exc, exc_info=True)
-    traceback_str = traceback.format_exc()
-    logger.error(traceback_str)
-    message = f"Error: {exc}\n\nTraceback:\n```{traceback_str}```\n"
 
-    logger.error(message)
     print(exc)
     resp = { "detail": f"Internal server error" }
     return JSONResponse(content=resp, status_code=500)
