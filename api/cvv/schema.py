@@ -26,7 +26,13 @@ class ValidationPayload(BaseModel):
             raise HTTPException(status_code=400, detail='cvv cannot be empty')
         if is_empty_string(card_number):
             raise HTTPException(status_code=400, detail='card_number cannot be empty')
+        
+        if int(expiry_month) > 12:
+            raise HTTPException(status_code=400, detail='expiry_month cannot be greater than 12')
 
+        if len(str(expiry_year)) != 4:
+            raise HTTPException(status_code=400, detail='expiry_year must be in the YYYY format')
+        
         return values
     
 class ValidationResponse(BaseModel):
