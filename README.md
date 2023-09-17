@@ -1,5 +1,5 @@
 # A simple credit card validator
-A simple service for validate credit cards enhanced with Luhn's algorithm.
+A simple service for validate credit cards enhanced with [Luhn's algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm).
 
 # Requirements
 - Python v3.9+
