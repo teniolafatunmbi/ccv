@@ -33,7 +33,7 @@ app.include_router(cvv)
 
 @app.get("/", tags=['Home'])
 async def root():
-    return {"message": "Credit Card Validation API", "url": "http://127.0.0.1/docs"}
+    return {"message": "Credit Card Validation API", "url": "http://localhost:7001/docs"}
 
 
 @app.exception_handler(Exception)
@@ -48,10 +48,8 @@ async def generic_exception_handler(request, exc):
     logger.error(message)
     print(exc)
     resp = { "detail": f"Internal server error" }
-    if config('APP_ENV') != "production" and isinstance(exc, HTTPException):
-        resp['context'] = exc.errors()
     return JSONResponse(content=resp, status_code=500)
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=int(config('PORT')), reload=True)
+    uvicorn.run("main:app", port=7001, reload=True)

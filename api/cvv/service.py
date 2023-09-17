@@ -2,10 +2,8 @@ from datetime import datetime
 from .schema import ValidationPayload
 from .responses import *
 
-def is_american_express(cvv: str):
-    if len(cvv) == 4:
-        return True
-    return False
+def is_american_express(card_number: int):
+    return (str(card_number).startswith('34') or str(card_number).startswith('37'))
 
 
 def luhn_checksum(card_number: str):
@@ -48,14 +46,15 @@ def validate_credit_card(payload: ValidationPayload):
     if payload.expiry_year < current_year:
         return ExpiredCreditCard()
     
-        # elif expiry month is greater than current month, raise ExpiredCreditCard exception
+    # elif expiry month is greater than current month, raise ExpiredCreditCard exception
     if (payload.expiry_year < current_year) and (payload.expiry_month < current_month):
         return ExpiredCreditCard()
 
-    if is_american_express(payload.cvv):
-        # if cvv is american express, pan card number must start with 34 or 37
-        if (str(payload.card_number).startswith('34') or str(payload.card_number).startswith('34')) == False:
+    # if cvv is american express, pan card number must start with 34 or 37
+    if is_american_express(payload.card_number):
+        if len(payload.cvv) != 4:
             return InvalidAmericanExpressCard()
+        
     
     card_no_is_within_range = len(str(payload.card_number)) >= 16 and len(str(payload.card_number)) <= 19
 
@@ -66,4 +65,4 @@ def validate_credit_card(payload: ValidationPayload):
     if not luhn_checksum(payload.card_number):
         return InvalidCreditCard()
     
-    return { 'status' : 'success' }
+    return { 'status' : 'success', 'message': 'Credit Card validated successfully' }

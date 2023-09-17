@@ -1,14 +1,14 @@
 from datetime import datetime
 from fastapi import APIRouter
 
-from .schema import ValidationPayload
+from .schema import ValidationPayload, ValidationResponse
 import api.cvv.service as service
 
 from .responses import *
 
 router = APIRouter(tags=['Credit Card Validator'])
 
-@router.post('/api/v1/validate')
+@router.post('/api/v1/validate', response_model=ValidationResponse, status_code=200)
 def validate_credit_card(payload: ValidationPayload):
     """
         Validates credit card 

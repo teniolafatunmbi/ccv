@@ -28,3 +28,7 @@ class ValidationPayload(BaseModel):
             raise HTTPException(status_code=400, detail='card_number cannot be empty')
 
         return values
+    
+class ValidationResponse(BaseModel):
+    message: str
+    status: str

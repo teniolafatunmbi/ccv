@@ -11,7 +11,11 @@ def test_expired_credit_card():
         "expiry_month": datetime.now().month + 5,
         "cvv": "232",
     }
-    pass
+    response = test_client.post('/api/v1/validate', json=card_details)
+
+    assert response.status_code == 403
+    data = response.json()
+    assert data['status'] == "failed"
 
 def test_american_express_credit_card():
     card_details = {
