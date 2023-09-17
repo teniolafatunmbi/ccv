@@ -9,14 +9,19 @@ class ValidationPayload(BaseModel):
     card_number: int
 
     @root_validator(pre=True)
-    def validate_empty_strings(cls, values):
-        if is_empty_string(values.get('expiry_year')):
+    def validate_values(cls, values):
+        card_number = values.get('card_number')
+        cvv = values.get('cvv')
+        expiry_year = values.get('expiry_year')
+        expiry_month = values.get('expiry_month')
+
+        if is_empty_string(expiry_year):
             raise HTTPException(status_code=400, detail='expiry_year cannot be empty')
-        if is_empty_string(values.get('expiry_month')):
+        if is_empty_string(expiry_month):
             raise HTTPException(status_code=400, detail='expiry_month cannot be empty')
-        if is_empty_string(values.get('cvv')):
+        if is_empty_string(cvv):
             raise HTTPException(status_code=400, detail='cvv cannot be empty')
-        if is_empty_string(values.get('card_number')):
+        if is_empty_string(card_number):
             raise HTTPException(status_code=400, detail='card_number cannot be empty')
-        
+
         return values
