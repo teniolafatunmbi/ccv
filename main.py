@@ -48,7 +48,6 @@ async def generic_exception_handler(request, exc):
     logger.error(message)
     print(exc)
     resp = { "detail": f"Internal server error" }
-    ''
     if config('APP_ENV') != "production" and isinstance(exc, HTTPException):
         resp['context'] = exc.errors()
     return JSONResponse(content=resp, status_code=500)
