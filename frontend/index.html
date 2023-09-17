@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Validator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1>Welcome to the Credit Card Validator app</h1>
+
+    <div class="flex min-h-full flex-col justify-center">    
+        <div class="mx-auto border border-2 px-6 py-12 lg:px-8 rounded-md">
+            <div id="response" class="failed"></div>
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div class="space-y-6">
+                  <div>
+                    <label for="card_number" class="block text-sm font-medium leading-6 text-gray-900">Card number</label>
+                    <div class="mt-2">
+                      <input autocomplete="off" id="card_number" name="card_number" type="text" value="" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      <span id="card_number_error"></span>
+                    </div>
+                  </div>
+            
+                  <div class="grid grid-cols-2 gap-3">
+                      <div>
+                          <div class="flex items-center justify-between">
+                            <label for="expiry_date" class="block text-sm font-medium leading-6 text-gray-900">Expiry date</label>
+                          </div>
+                          <div class="mt-2">
+                            <input autocomplete="off" id="expiry_date" name="expiry_date" type="text" value="" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                          </div>
+                          <span id="expiry_date_error"></span>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between">
+                              <label for="cvv" class="block text-sm font-medium leading-6 text-gray-900">CVV</label>
+                            </div>
+                            <div class="mt-2">
+                              <input autocomplete="off" id="cvv" name="cvv" type="text" value="" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <span id="cvv_error"></span>
+                        </div>
+                  </div>
+                  
+            
+                  <div>
+                    <button id="submit" type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                  </div>
+                </div>
+      
+              </div>
+        </div>  
+      </div>
+
+      <script src="./script.js"></script>
+</body>
+</html>

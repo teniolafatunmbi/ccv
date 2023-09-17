@@ -35,10 +35,10 @@ async def validate_credit_card(payload: ValidationPayload):
         if (str(payload.card_number).startswith('34') or str(payload.card_number).startswith('34')) == False:
             return InvalidAmericanExpressCard()
     
-    card_no_is_within_range = len(payload.card_number) >= 16 and len(payload.card_number) <= 19
+    card_no_is_within_range = len(str(payload.card_number)) >= 16 and len(str(payload.card_number)) <= 19
 
     if not card_no_is_within_range:
-        raise InvalidCreditCard()
+        return InvalidCreditCard()
     
     # validate with luhn's algorithm
 
