@@ -30,7 +30,6 @@ def luhn_checksum(card_number: str):
             even_nos_sum += num_double
 
     checksum = odd_nos_sum + even_nos_sum
-    print(checksum)
 
     if (checksum % 10) != 0:
         return False
