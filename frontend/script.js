@@ -81,6 +81,14 @@ submitBtn.addEventListener("click", () => {
     if (!formHasErrors) {
         const [month, year] = expiryDate.value.split('/');
 
+
+        // confirm that card_number is a valid number
+        if (isNaN(inputValues.card_number)) {
+            formHasErrors = true;
+            document.getElementById('card_number_error').innerText = 'Card number is not a valid number';
+            return;
+        }
+
         // confirm that month and year have valid values
         if (!month || !year) {
             formHasErrors = true;
@@ -88,17 +96,31 @@ submitBtn.addEventListener("click", () => {
             return;
         }
 
+        // confirm that month in in the correct format
+        if (isNaN(month)) {
+            formHasErrors = true;
+            document.getElementById('expiry_date_error').innerText = 'Month is not a number';
+            return;
+        }
+
+        // confirm that month in in the correct format
+        if (+month > 12) {
+            formHasErrors = true;
+            document.getElementById('expiry_date_error').innerText = 'Month cannot be greater than 12';
+            return;
+        }
+
+        // confirm that month in in the correct format
+        if (isNaN(year)) {
+            formHasErrors = true;
+            document.getElementById('expiry_date_error').innerText = 'Year not a number';
+            return;
+        }
+
         // confirm that year in in the correct format
         if (year.length != 4) {
             formHasErrors = true;
             document.getElementById('expiry_date_error').innerText = 'Year is not in the YYYY format';
-            return;
-        }
-
-        // confirm that card_number is a valid number
-        if (isNaN(inputValues.card_number)) {
-            formHasErrors = true;
-            document.getElementById('card_number_error').innerText = 'Card number is not a valid number';
             return;
         }
 

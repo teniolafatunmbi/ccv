@@ -30,7 +30,7 @@ app.include_router(cvv)
 
 @app.get("/", tags=['Home'])
 async def root():
-    return {"message": "Credit Card Validation API", "url": "http://localhost:7001/docs"}
+    return {"message": "Credit Card Validation API", "app": 'http://localhost:7001/app', "docs": "http://localhost:7001/docs"}
 
 
 @app.exception_handler(Exception)
