@@ -35,5 +35,5 @@ A simple service for validate credit cards enhanced with Luhn's algorithm.
 
 # Usage
 - The API documentation is at `http://localhost:7001/docs`
-- The validate endpoint is on `http://localhost:7001/api/v1/validate`.
-- The UI for credit card validation is on `http://localhost:7001/app`.
+- The validate endpoint is at `http://localhost:7001/api/v1/validate`.
+- The UI for credit card validation is at `http://localhost:7001/app`.
