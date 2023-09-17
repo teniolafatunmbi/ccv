@@ -1,7 +1,6 @@
 from pydantic import BaseModel, root_validator
 from fastapi.exceptions import HTTPException
 
-from .service import is_empty_string
 class ValidationPayload(BaseModel):
     expiry_year: int
     expiry_month: int
@@ -10,6 +9,10 @@ class ValidationPayload(BaseModel):
 
     @root_validator(pre=True)
     def validate_values(cls, values):
+        def is_empty_string(string: str) -> bool:
+            if len(string.strip()) == 0:
+                return True
+            return False
         card_number = values.get('card_number')
         cvv = values.get('cvv')
         expiry_year = values.get('expiry_year')
